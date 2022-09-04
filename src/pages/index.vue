@@ -18,9 +18,16 @@
       v-if="!$store.state.loading && $store.state.articles?.data?.length > 0"
       class="flex flex-col items-center justify-center gap-4"
     >
-      <select id="orderBy" name="orderBy" @change="handleOrderChange($event)">
-        <option value="date">Data</option>
+      <select
+        id="orderBy"
+        name="orderBy"
+        @change="
+          $store.dispatch('setPagination', { orderBy: $event.target.value })
+        "
+        value
+      >
         <option value="relevance">Relevância</option>
+        <option value="date">Data</option>
         <option value="title">Título</option>
       </select>
 
@@ -36,6 +43,8 @@
           <ArticleCard :article="article" />
         </nuxt-link>
       </div>
+
+      <Pagination />
     </main>
   </div>
 </template>
@@ -43,10 +52,11 @@
 <script>
 import Search from '../components/Search.vue'
 import ArticleCard from '../components/ArticleCard.vue'
+import Pagination from '../components/Pagination.vue'
 
 export default {
   name: 'IndexPage',
-  components: { Search, ArticleCard },
+  components: { Search, ArticleCard, Pagination },
   head: {
     title: 'Translation, Inc.',
     meta: [
@@ -59,11 +69,6 @@ export default {
           'Buscador de artigos para facilitar aos usuários encontrarem conteúdos personalizados sobre saúde e nutrição.',
       },
     ],
-  },
-  methods: {
-    handleOrderChange(event) {
-      this.$store.dispatch('getArticles', { orderBy: event.target.value })
-    },
   },
 }
 </script>
