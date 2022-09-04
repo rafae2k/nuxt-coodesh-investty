@@ -53,11 +53,11 @@
 
 ## About the development process
 
-It was my first Vue project, and despite being a simple project I only had 5 days to develop it, I had to learn Vue and Nuxt in the process.
+It was my first Vue project, and despite being a simple project I had to learn Vue and Nuxt in the process.
 
-At first, I wasn't sure if I could do it with the same skill I have with React, so I decided not to do it and focus on developing other projects, but on the last day, I decided to challenge myself and found the courage to build it. .
+At first, I wasn't sure if I could do it with the same skill I have with React, so I decided not to do it and focus on developing other projects, but on the last day, I decided to challenge myself and found the courage to build it.
 
-I had to learn how to use the Nuxt Routing, Vuex, Vue 3, Nuxt and how to use different modules like axios to consume Wordpress API.
+I had to learn how to use the Nuxt Routing, Vuex, Vue 3, Nuxt and how to use different modules like axios to consume Wordpress API in just few hours, and the most challenging part was VueX state management, like Redux in React, it need some time and patience to implement the store and implement and use the actions and mutations.
 
 The project was made using the following tools and standards for good development experience and good code quality:
 
