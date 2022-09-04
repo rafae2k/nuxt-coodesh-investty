@@ -1,16 +1,16 @@
 <template>
   <main
     v-if="article.id"
-    class="container mx-auto flex flex-col items-center my-24 gap-8"
+    class="container flex flex-col items-center gap-8 mx-auto my-24"
   >
     <div class="prose">
       <img
         :src="article.featured_media.large"
         alt=""
-        class="w-full object-cover rounded-md"
+        class="object-cover w-full rounded-md"
       />
       <h1 class="text-4xl font-bold">{{ article.title }}</h1>
-      <h2 class="text-gray-400 font-normal">{{ article.headline }}</h2>
+      <h2 class="font-normal text-gray-400">{{ article.headline }}</h2>
     </div>
 
     <!-- eslint-disable-next-line vue/no-v-html -->
@@ -29,7 +29,9 @@ export default {
     }
   },
   async mounted() {
-    const article = await this.$axios.$get(`/posts/${this.$route.params.id}`)
+    const article = await this.$axios.$get(`/posts/${this.$route.params.id}`, {
+      progress: true,
+    })
     this.article = article
   },
 }
