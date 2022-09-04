@@ -4,6 +4,8 @@ export default {
 
   srcDir: 'src/',
 
+  buildDir: 'dist/',
+
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
     title: 'coodesh-investty-credit',
@@ -37,6 +39,11 @@ export default {
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
   axios: {
     baseURL: 'https://api.beta.mejorconsalud.com/wp-json/mc/v2',
+  },
+
+  loading: {
+    color: '#1d4ed8',
+    height: '5px',
   },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
