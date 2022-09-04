@@ -3,6 +3,13 @@ export const state = () => ({
   articles: [],
   loading: false,
   error: null,
+  pagination: {
+    page: 1,
+    perPage: 9,
+    totalArticles: 0,
+    totalPages: 0,
+    orderBy: 'relevance',
+  },
 })
 
 export const mutations = {
@@ -15,20 +22,26 @@ export const mutations = {
   setLoading(state, loading) {
     state.loading = loading
   },
+  setPagination(state, pagination) {
+    state.pagination = { ...state.pagination, ...pagination }
+  },
 }
 
 export const actions = {
-  async getArticles({ state, commit }, options = {}) {
-    options.page = options.page || 1
-    options.orderBy = options.orderBy || 'relevance'
-
-    const { page, orderBy } = options
+  async getArticles({ state, commit }) {
+    const {
+      query,
+      pagination: { page, orderBy, perPage },
+    } = state
 
     try {
       commit('setLoading', true)
       await this.$axios
         .$get(
-          `/posts?search=${state.query}&page=${page}&orderby=${orderBy}&per_page=9`
+          `/posts?search=${query}&page=${page}&orderby=${orderBy}&per_page=${perPage}`,
+          {
+            progress: true,
+          }
         )
         .then((response) => {
           commit('setArticles', response)
@@ -38,5 +51,9 @@ export const actions = {
     } finally {
       commit('setLoading', false)
     }
+  },
+  setPagination({ commit, dispatch }, pagination) {
+    commit('setPagination', pagination)
+    dispatch('getArticles')
   },
 }
